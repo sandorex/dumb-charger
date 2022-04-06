@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">The Dumb Charger</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="about_header">About</string>
+    <string name="behavior_header">Behaviour</string>
+    <string name="tests_header">Tests</string>
+</resources>
