@@ -9,31 +9,31 @@
 
         <SeekBarPreference
             app:defaultValue="85"
-            app:icon="@drawable/ic_baseline_battery_charging_full_128"
+            app:icon="@drawable/ic_baseline_battery_charging_full"
             app:key="max_charge"
             app:showSeekBarValue="true"
             app:summary="When to tell the charger to stop charging"
             app:title="Upper threshold" />
 
         <SeekBarPreference
-            app:icon="@drawable/ic_baseline_battery_alert_128"
+            app:icon="@drawable/ic_baseline_battery_alert"
             app:key="min_charge"
             app:showSeekBarValue="true"
             app:summary="When to tell the charger to start charging"
             app:title="Lower threshold" />
 
         <SwitchPreferenceCompat
-            app:icon="@drawable/ic_baseline_usb_128"
+            app:icon="@drawable/ic_baseline_usb"
             app:key="run_when_usb"
             app:summary="Run the app when charging using USB"
             app:title="USB (slow charge)" />
 
         <SwitchPreferenceCompat
             app:dependency="run_when_usb"
-            app:icon="@drawable/ic_baseline_computer_128"
+            app:icon="@drawable/ic_baseline_computer"
             app:key="run_when_usb_device"
             app:summary="ex. connected to a PC"
-            app:title="Connected to a USB host" />
+            app:title="As USB device" />
 
         <SwitchPreferenceCompat
             app:key="run_when_wireless"
@@ -54,29 +54,29 @@
 
     <PreferenceCategory app:title="@string/tests_header">
         <Preference
-            app:icon="@drawable/ic_baseline_highlight_72"
+            app:icon="@drawable/ic_baseline_highlight"
             app:summary="Check if torch API is working\nThe torch should flash when pressed"
             app:title="Torch Test" />
 
         <Preference
-            android:icon="@drawable/ic_baseline_charging_station_64"
+            android:icon="@drawable/ic_baseline_charging_station"
             app:summary="Run tests to check if the charger is responding properly"
             app:title="Charger Test" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/about_header">
         <Preference
-            app:icon="@drawable/ic_baseline_favorite_64"
+            app:icon="@drawable/ic_baseline_favorite"
             app:summary="Buy me a coffee, or something from aliexpress"
             app:title="Support Me" />
 
         <Preference
-            app:icon="@drawable/github_mark_light_64px"
+            app:icon="@drawable/github_mark_32px"
             app:summary="Check out the source code"
             app:title="Github" />
 
         <Preference
-            app:icon="@drawable/ic_baseline_money_off_128"
+            app:icon="@drawable/ic_baseline_money_off"
             app:summary="GNU General Public License v3.0"
             app:title="License" />
     </PreferenceCategory>
