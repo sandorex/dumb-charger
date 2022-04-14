@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="key_enabled" translatable="false" formatted="false">enabled</string>
+    <string name="key_help" translatable="false" formatted="false">help</string>
+    <string name="key_max_charge" translatable="false" formatted="false">max_charge</string>
+    <string name="key_min_charge" translatable="false" formatted="false">min_charge</string>
+    <string name="key_on_slow_charge" translatable="false" formatted="false">on_slow_charge</string>
+    <string name="key_as_usb_device" translatable="false" formatted="false">as_usb_device</string>
+    <string name="key_on_wireless" translatable="false" formatted="false">on_wireless</string>
+
+    <string name="key_test_torch" translatable="false" formatted="false">test_torch</string>
+    <string name="key_test_charger" translatable="false" formatted="false">test_charger</string>
+
+    <string name="key_support_me" translatable="false" formatted="false">support_me</string>
+    <string name="key_github" translatable="false" formatted="false">github</string>
+    <string name="key_license" translatable="false" formatted="false">license</string>
+
+</resources>

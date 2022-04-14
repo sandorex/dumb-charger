@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script text="javascript">
+        class flashlightHandler {
+            static track; //the video track which is used to turn on/off the flashlight
+
+            static accessFlashlight() {
+                //Test browser support
+                if (!('mediaDevices' in window.navigator)) {
+                    alert("Media Devices not available. Use HTTPS!");
+                    return;
+                };
+
+                //Get the environment camera (usually the second one)
+                window.navigator.mediaDevices.enumerateDevices().then((devices) => {
+
+                    const cameras = devices.filter((device) => device.kind === 'videoinput');
+                    if (cameras.length === 0) {
+                        alert("No camera found. If your device has camera available, check permissions.");
+                        return;
+                    };
+
+                    const camera = cameras[cameras.length - 1];
+
+                    window.navigator.mediaDevices.getUserMedia({
+                        video: {
+                            deviceId: camera.deviceId
+                        }
+                    }).then((stream) => {
+                        this.track = stream.getVideoTracks()[0];
+
+                        if (!(this.track.getCapabilities().torch)) {
+                            alert("No torch available.");
+                        };
+                    });
+                });
+            }
+
+            static setFlashlightStatus(status) {
+                this.track.applyConstraints({
+                    advanced: [{
+                        torch: status
+                    }]
+                });
+            }
+        }
+
+        flashlightHandler.accessFlashlight();
+
+        flashlightHandler.setFlashlightStatus(true);
+        setTimeout(() => {
+            flashlightHandler.setFlashlightStatus(false);
+        }, 3000);
+    </script>
+
+</body>
+</html>

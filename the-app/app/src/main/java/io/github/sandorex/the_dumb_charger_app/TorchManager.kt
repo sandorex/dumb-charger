@@ -9,7 +9,7 @@ import android.widget.Toast
 class TorchManager {
     companion object {
         private lateinit var cameraManager: CameraManager
-        private lateinit var cameraId: String
+        private var cameraId: String = ""
         private var torchState: Boolean = false
 
 //        fun findCamera(context: Context, applicationContext: Context) {

@@ -4,6 +4,7 @@ import android.content.*
 import android.os.BatteryManager
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -25,19 +26,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private val batinfoReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-//        override fun onReceive(ctxt: Context, intent: Intent) {
+    private val batinfoReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(ctxt: Context, intent: Intent) {
+            Toast.makeText(this@MainActivity, "Intent: " + intent.action, Toast.LENGTH_SHORT).show()
+
+            val bundle = intent.extras
+            if (bundle != null) {
+                for (key in bundle.keySet()) {
+                    Log.e("io.github.sandorex.the_dumb_charger_app", key + " : " + if (bundle[key] != null) bundle[key] else "NULL")
+                }
+            }
 //            val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
 //            val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
 //            val batteryLevel = level * 100 / scale.toFloat()
-////            batteryTxt.setText("$batteryPct%")
+//            batteryTxt.setText("$batteryPct%")
 //            if (batteryLevel >= maxCharge) {
 //                Toast.makeText(this@MainActivity, "Battery reached max charge%", Toast.LENGTH_SHORT).show()
 //                signal()
 //            }
-//
-//        }
-//    }
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,16 +56,27 @@ class MainActivity : AppCompatActivity() {
 
         val btn = findViewById<Button>(R.id.button)
         btn.setOnClickListener {
-            val bm = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager
-            val batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-            val status = bm.getIntProperty(BatteryManager.BATTERY_PLUGGED_USB)
+            val service = Intent(this, MonitorService::class.java)
+            this.stopService(service)
+//            val bm = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager
+//            val batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+//            val status = bm.getIntProperty(BatteryManager.BATTERY_PLUGGED_USB)
 
-            Toast.makeText(this@MainActivity, "Your battery level is $batLevel%, $status", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this@MainActivity, "Your battery level is $batLevel%, $status", Toast.LENGTH_SHORT).show()
 //            startActivity(Intent(this, SettingsActivity::class.java))
 
 //            signal()
 //            Toast.makeText(this@MainActivity, "You clicked", Toast.LENGTH_SHORT).show()
         }
+
+//        val filter = IntentFilter()
+//        filter.addAction(Intent.ACTION_BATTERY_CHANGED)
+////        filter.addAction(Intent.ACTION_POWER_CONNECTED)
+////        filter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+//        this.registerReceiver(this.batinfoReceiver, filter)
+
+        val service = Intent(this, MonitorService::class.java)
+        this.startService(service)
 
 //        handler = Handler(Looper.getMainLooper())
 //        handler.post(updateTask)
