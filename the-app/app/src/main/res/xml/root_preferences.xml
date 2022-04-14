@@ -1,5 +1,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="Appearance">
+        <SwitchPreferenceCompat
+            app:key="@string/key_dark_mode"
+            app:summary="Force dark mode"
+            app:title="Dark mode" />
+    </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/behavior_header">
         <SwitchPreferenceCompat
@@ -7,12 +13,6 @@
             app:key="@string/key_enabled"
             app:summary="Enable the service\nIt will run in the background even when the app is closed"
             app:title="Background service" />
-
-        <Preference
-            app:icon="@drawable/ic_baseline_help"
-            app:key="@string/key_help"
-            app:summary="Service not working in the background?\nSome aggressive ram killers can be disabled"
-            app:title="Help" />
 
         <SeekBarPreference
             app:defaultValue="85"
@@ -30,6 +30,15 @@
             app:summary="When to tell the charger to start charging"
             app:title="Lower threshold" />
 
+        <SeekBarPreference
+            app:defaultValue="2"
+            app:icon="@drawable/ic_baseline_change_circle"
+            app:key="@string/key_attempts"
+            android:max="10"
+            app:showSeekBarValue="true"
+            app:summary="Number of times to try to signal the charger\nZero means infinte"
+            app:title="Attempts" />
+
         <SwitchPreferenceCompat
             app:defaultValue="true"
             app:icon="@drawable/ic_baseline_usb"
@@ -38,6 +47,7 @@
             app:title="USB (slow charge)" />
 
         <SwitchPreferenceCompat
+            app:enabled="false"
             app:dependency="@string/key_on_slow_charge"
             app:icon="@drawable/ic_baseline_computer"
             app:key="@string/key_as_usb_device"
@@ -50,6 +60,12 @@
             app:key="@string/key_on_wireless"
             app:summary="Run the app when charging wirelessly"
             app:title="Wirelessly" />
+
+        <Preference
+            app:icon="@drawable/ic_baseline_help"
+            app:key="@string/key_help"
+            app:summary="Get help online"
+            app:title="Help" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/tests_header">

@@ -8,39 +8,37 @@ import android.widget.Toast
 
 class TorchManager {
     companion object {
-        private lateinit var cameraManager: CameraManager
+        private var cameraManager: CameraManager? = null
         private var cameraId: String = ""
         private var torchState: Boolean = false
 
-//        fun findCamera(context: Context, applicationContext: Context) {
-        fun findCamera(context: Context) {
+        fun findCamera(context: Context): Boolean {
             val isFlashAvailable = context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)
 
             if (!isFlashAvailable) {
                 Toast.makeText(context, "Could not camera on this device", Toast.LENGTH_SHORT).show()
-//                val alert = AlertDialog.Builder(context).create()
-//                alert.setTitle("Oops!")
-//                alert.setMessage("Flash not available in this device...")
-//                alert.setButton(DialogInterface.BUTTON_POSITIVE, "OK") { _, _ -> finish() }
-//                alert.show()
+                return false
             }
 
             cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
             try {
-                cameraId = cameraManager.cameraIdList[0]
+                cameraId = cameraManager?.cameraIdList?.get(0) ?: return false
             } catch (e: CameraAccessException) {
                 e.printStackTrace()
+                return false
             }
+
+            return true
         }
 
         fun hasCamera(): Boolean {
-            return cameraId.isEmpty()
+            return cameraId.isNotEmpty() && cameraManager != null
         }
 
         fun setTorch(state: Boolean) {
             try {
                 torchState = state
-                cameraManager.setTorchMode(cameraId, state)
+                cameraManager?.setTorchMode(cameraId, state)
             } catch (e: CameraAccessException) {
                 e.printStackTrace()
             }

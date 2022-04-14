@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="key_dark_mode" translatable="false" formatted="false">dark_mode</string>
+
     <string name="key_enabled" translatable="false" formatted="false">enabled</string>
     <string name="key_help" translatable="false" formatted="false">help</string>
     <string name="key_max_charge" translatable="false" formatted="false">max_charge</string>
     <string name="key_min_charge" translatable="false" formatted="false">min_charge</string>
+    <string name="key_attempts" translatable="false" formatted="false">attempts</string>
     <string name="key_on_slow_charge" translatable="false" formatted="false">on_slow_charge</string>
     <string name="key_as_usb_device" translatable="false" formatted="false">as_usb_device</string>
     <string name="key_on_wireless" translatable="false" formatted="false">on_wireless</string>
